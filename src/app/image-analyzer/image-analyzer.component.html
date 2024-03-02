@@ -1,0 +1,69 @@
+<div class="container-fluid scrollable p-0">
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img class="logo" src="../../assets/Autosphere.svg" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" aria-current="page" href="/">Content</a>
+          <a class="nav-link active" href="/image">Image</a>
+          <a class="nav-link" href="#">API</a>
+          <a class="nav-link" href="#">RAG</a>
+          <a class="nav-link" href="#">Feedback</a>
+          <!-- Additional links or buttons can be added here -->
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main content area -->
+  <div class="container mt-4 ">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Image Analysis</h5>
+        <p class="card-text">AutoLLM based module for image Analysis
+        </p>
+        <form autocomplete="off" [formGroup]="form" class="login-form">
+
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Add or Past your text</mat-label>
+                <textarea matInput rows="5" placeholder="Ex. It makes me feel..." formControlName="query"></textarea>
+              </mat-form-field>
+              <img [src]="imageSrc" *ngIf="imageSrc" class="img-preview">
+
+            </div>
+            <div class="col-md-12">
+              <input type="file" (change)="onFileSelected($event)" #fileInput>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button (click)="onSubmit()" [disabled]="loding" class="btn Analysis btn-primary">Analyze</button>
+            </div>
+          </div>
+        </form>
+        @if (loding) {
+        <div class="loding">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        }
+        @else if (showoutput) {
+        <div class="results-section mt-4">
+          <h6 class="mb-3">Analysis results</h6>
+          <div class="result">
+            {{resoponce}}
+          </div>
+        </div>
+        }
+
+      </div>
+    </div>
+  </div>
+</div>

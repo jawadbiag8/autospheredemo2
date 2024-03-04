@@ -25,19 +25,32 @@ def post_data():
     # Get data from the request
     # data = request.json
     data = request.form['text']
-
+    ty=request.form['type']
+    print(ty)
     # Store data with a simple key
     # data_store['key'] = data
-    completion = client.chat.completions.create(
-    model="gpt-3.5-turbo",
-    temperature=0,
-   messages=[
-      {"role": "system", "content": "You are an expert text analyst, skilled in understanding the text and returning exact information in Json format."},
-      {"role": "user", "content": f"Give Sentiment as either Positive, Negative or Neutral. Give Emotion and also give if the comment is Gibberish or not, Give translation of comment in english. Also provide summary of topic discussed, and Suggest Improvements for 'کھانا ٹھنڈا ہو گیا کیونکہ سوار لیٹ ہو گیا تھا۔'"},
-      {"role": "assistant", "content": '{"Sentiment":"Negative", "Emotion":"Disappointment", "Gibberish": "No", "Translation": "Food got cold because rider was late.", "Summary":" Delivery Issue, as rider delayed the order", "Improvements": "Delivery can be improved by taking proper route to destination and deliver on time."}'},
-      {"role": "user", "content": f"Give Sentiment as either Positive, Negative or Neutral. Give Emotion and also give if the comment is Gibberish or not, Give translation of comment in english. Also provide summary of topic discussed, and Suggest Improvements for '{data}'"}
-            ]
-  )
+    if ty=='gen':
+      completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      temperature=0.0,
+      messages=[
+        {"role": "system", "content": "You are an expert text generator, skilled in generating new text in Json format."},
+        {"role": "user", "content": f"Give 3 negative comments related to food"},
+        {"role": "assistant", "content": '{"0":"food does not have any taste. it is tasteless.", "1":the food is cold as the rider took too long to deliver the order", "2": "I am so hungry, please hurry up."}'},
+        {"role": "user", "content": f"{data}"}
+              ]
+      )
+    else:
+      completion = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      temperature=0,
+      messages=[
+          {"role": "system", "content": "You are an expert text analyst, skilled in understanding the text and returning exact information in Json format."},
+          {"role": "user", "content": f"Give Sentiment as either Positive, Negative or Neutral. Give Emotion and also give if the comment is Gibberish or not, Give translation of comment in english. Also provide summary of topic discussed, and Suggest Improvements for 'کھانا ٹھنڈا ہو گیا کیونکہ سوار لیٹ ہو گیا تھا۔'"},
+          {"role": "assistant", "content": '{"Sentiment":"Negative", "Emotion":"Disappointment", "Gibberish": "No", "Translation": "Food got cold because rider was late.", "Summary":" Delivery Issue, as rider delayed the order", "Improvements": "Delivery can be improved by taking proper route to destination and deliver on time."}'},
+          {"role": "user", "content": f"Give Sentiment as either Positive, Negative or Neutral. Give Emotion and also give if the comment is Gibberish or not, Give translation of comment in english. Also provide summary of topic discussed, and Suggest Improvements for '{data}'"}
+                ]
+      )
     result = completion.choices[0].message.content
     converted_dict = json.loads(result)
     print(type(converted_dict))
@@ -82,7 +95,7 @@ def submit():
                 "role": "user",
                 "content": [
                     {"type": "text",
-                      "text": f"{text}"},
+                      "text": f"{text}+Keep the output concise and brief and return what is asked by user in english."},
                     {
                     "type": "image_url",
                     "image_url": {

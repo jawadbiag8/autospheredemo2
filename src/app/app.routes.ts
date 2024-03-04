@@ -6,5 +6,6 @@ import { ContentAnalysisComponent } from './content-analysis/content-analysis.co
 export const routes: Routes = [
   { path: '', component: ContentAnalysisComponent },
   { path: 'image', component: ImageAnalyzerComponent },
+  { path: 'genAI', component: HomeComponent },
 
 ];

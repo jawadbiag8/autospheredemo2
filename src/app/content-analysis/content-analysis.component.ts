@@ -49,6 +49,7 @@ export class ContentAnalysisComponent {
       console.log(this.loginForm.value)
       const formData = new FormData();
       formData.append("text", this.loginForm.value.query);
+      formData.append("type", "asd");
       const upload$ = this.http.post(this.apipath + "data", formData);
       upload$.subscribe(
         (data) => {

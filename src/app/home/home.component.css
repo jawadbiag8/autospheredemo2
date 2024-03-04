@@ -1,54 +1,40 @@
-body {
-  background-color: #5217af;
-  background-image: url("/assets/bg1.png");
-  background-repeat: no-repeat;
-  background-position: right center;
-  overflow-x: hidden;
-  overflow-y: auto;
-
+/* Custom styles for the component */
+.navbar-brand {
+  font-weight: bold;
 }
 
-.login-wrapper mat-card-header {
-  text-align: center;
-  width: 100%;
-  display: block;
-  font-weight: 700;
+.card {
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.mh {
-  min-height: 100%;
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.Products .col-md-3 {
-  display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.mat-icon-size {
-  font-size: 40px;
-  height: 34px;
-  width: 40px;
-  cursor: pointer;
-}
-.Products img {
-  height: 100px;
-  background: #fff;
-  border-radius: 15px
-}
-.productitems{
-  background-color: #fff;
-  border-radius: 15px;
-  padding: 29px;
-}
-h6{
-  text-align: center;
-}
-h1 {
-  text-align: center;
-  color: #fff;
+.card-text {
+  margin-bottom: 20px;
 }
 
+.results-section .badge {
+  margin-right: 5px;
+  font-size: 1em;
+}
+
+.card {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.example-full-width {
+  width: 50%;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
 .loding {
   display: flex;
   justify-content: center;
@@ -57,39 +43,6 @@ h1 {
   flex-wrap: wrap;
 
 }
-
-.Positive {
-  color: rgb(3, 241, 3);
-}
-
-.Negative {
-  color: red;
-}
-
-.login-wrapper .login-form {
-  min-width: 100%;
-  max-width: 300px;
-  width: 100%;
-}
-
-.loginlogo {
-  height: 100px;
-  margin-bottom: 40px;
-}
-
-.box {
-  /* position: absolute; */
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  display: block;
-  height: fit-content;
-  padding: 43px 20px 120px 20px;
-  width: 100%;
-  max-width: 500px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+  background-color: #5227af6e;
 }
